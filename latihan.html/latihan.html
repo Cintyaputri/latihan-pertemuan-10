@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Conversi Celcius Fahrenheit</title>
+    <link rel="stylesheet" href="../../Downloads/bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <style>
+        .jarak{
+            padding-top:20px
+        }
+    </style>
+    
 </head>
 <body>
     <div class="container">
@@ -30,40 +37,49 @@
 
 </div>
 
-<script src=""></script>
-<script src=""></script>
+<script src="../../Downloads/bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+<script src="../jQuery Putri/jQuery.js"></script>
 <script>
     //definisi script Konversi C=>F, F=>C
     //Dari C->F = (C x 9/5) + 32
     //Dari F->C = (F x 5/9) - 32
 
-$(function(){
-    $("select").on('change',function(){
-       var pil = $("select").val()
-       if(pil=="ctof"){
-        $("#txC").prop("disabled",false)
-        $("#txF").prop("disable",true)
-       }else{
-        $('#txC').prop("disable",true)
-        $('txF').prop("disable",false)
-       }
-    })
-    $("#cmdConvert").on("click",function(){
-        let nC = 0
-        let nF = 0
-        if(pil=="ctof"){
-            nC = $("txC").val()
-            nF = $(nC*9/5) + 32
-            txHASIL = "<h3>Konversi Nilai Celcius ke Fahrenheit</h3>"
-            txHASIL += "°F = (°C x 9/5 ) + 32<br>"
-            txHASIL += "°F = ("+nC+" x 9/5) + 32<br>"
-            txHASIL += "°F = "+nF+"°"
-            $("#txF").val(nF)
-            $("#txHasil").html(txHASIL)
-        }
+    $(function(){
+            var pil=""
+            var txHASIL = ""
+            $("select").on('change',function(){
+                pil = $("select").val()
+                if(pil=="ctof"){
+                    $("#txC").prop("disabled",false)
+                    $("#txF").prop("disabled",true)
+                }else{
+                    $("#txC").prop("disabled",true)
+                    $("#txF").prop("disabled",false)
+                }
+            })
+            $("#cmdConvert").on("click",function(){
+                let nC = 0
+                let nF = 0
+                if(pil=="ctof"){
+                    nC = $("#txC").val()
+                    nF = (nC*9/5)+32
+                    txHASIL = "<h3>Konversi Nilai Celcius ke Fahrenheit</h3>"
+                    txHASIL +="°F = (°C X 9/5) + 32<br>"
+                    txHASIL +="°F = ("+nC+" X 9/5) + 32<br>"
+                    txHASIL +="°F = "+nF+"°"
+                    $("#txF").val(nF)
+                    $("#txHasil").html(txHASIL)
+                }
         if(pil=="ftoc"){
             nF = $("#txF").val()
-            //.....
+            nC = $(nF*5/9) - 32
+            txHASIL = "<h3>Konversi Nilai Fahrenheit ke Celcius</h3>"
+            txHASIL += "°C = (°F x 5/9 ) - 32<br>"
+            txHASIL += "°C = ("+nF+" x 5/9) - 32<br>"
+            txHASIL += "°C = "+nC+"°"
+            $("#txC").val(nC)
+            $("#txHasil").html(txHASIL)
+        
         }
 
     })
